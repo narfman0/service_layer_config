@@ -1,5 +1,14 @@
-from setuptools import setup, find_packages  # Always prefer setuptools over distutils
-from codecs import open  # To use a consistent encoding
+"""A setuptools based setup module.
+
+See:
+https://packaging.python.org/en/latest/distributing.html
+https://github.com/pypa/sampleproject
+"""
+
+# Always prefer setuptools over distutils
+from setuptools import setup, find_packages
+# To use a consistent encoding
+from codecs import open
 import os
 
 here = os.path.abspath(os.path.dirname(__file__))
@@ -50,16 +59,23 @@ setup(
     ],
 
     # Although 'package_data' is the preferred approach, in some case you may
-    # need to place data files outside of your packages.
-    # see http://docs.python.org/3.4/distutils/setupscript.html#installing-additional-files
+    # need to place data files outside of your packages. See:
+    # http://docs.python.org/3.4/distutils/setupscript.html#installing-additional-files  # noqa
     # In this case, 'data_file' will be installed into '<sys.prefix>/my_data'
-    data_files=filter(lambda x: os.path.exists(x[1][0]),
+    data_files=filter(
+        lambda x: os.path.exists(x[1][0]),
         [('/etc/', ['boto.cfg'])]
     ),
 
     # You can just specify the packages manually here if your project is
     # simple. Or you can use find_packages().
     packages=find_packages(exclude=['contrib', 'docs', 'tests*']),
+
+    # List run-time dependencies here.  These will be installed by pip when
+    # your project is installed. For an analysis of "install_requires" vs pip's
+    # requirements files see:
+    # https://packaging.python.org/en/latest/requirements.html
+    install_requires=['simplejson'],
 
     # If there are data files included in your packages that need to be
     # installed, specify them here.  If using Python 2.6 or less, then these
@@ -74,8 +90,8 @@ setup(
     entry_points={
         'service_layer_group_id': [
             'config=service_layer_config.config:config_object',
-            'addresses_json_generator=service_layer_config.parsers:addresses_json_generator',
-            'addresses_filltext=service_layer_config.parsers:addresses_filltext',
+            'addresses_json_generator=service_layer_config.parsers:addresses_json_generator',  # noqa
+            'addresses_filltext=service_layer_config.parsers:addresses_filltext',  # noqa
         ],
     },
 )
