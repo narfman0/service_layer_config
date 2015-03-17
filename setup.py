@@ -1,11 +1,11 @@
 from setuptools import setup, find_packages  # Always prefer setuptools over distutils
 from codecs import open  # To use a consistent encoding
-from os import path
+import os
 
-here = path.abspath(path.dirname(__file__))
+here = os.path.abspath(os.path.dirname(__file__))
 
 # Get the long description from the relevant file
-with open(path.join(here, 'README.rst'), encoding='utf-8') as f:
+with open(os.path.join(here, 'README.rst'), encoding='utf-8') as f:
     long_description = f.read()
 
 setup(
@@ -48,6 +48,14 @@ setup(
         # that you indicate whether you support Python 2, Python 3 or both.
         'Programming Language :: Python :: 2.7',
     ],
+
+    # Although 'package_data' is the preferred approach, in some case you may
+    # need to place data files outside of your packages.
+    # see http://docs.python.org/3.4/distutils/setupscript.html#installing-additional-files
+    # In this case, 'data_file' will be installed into '<sys.prefix>/my_data'
+    data_files=filter(lambda x: os.path.exists(x[1][0]),
+        [('/etc/', ['boto.cfg'])]
+    ),
 
     # You can just specify the packages manually here if your project is
     # simple. Or you can use find_packages().
