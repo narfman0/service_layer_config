@@ -14,10 +14,10 @@ def parser_example(data):
 
 
 def _data_zero(data):
-    print 'data[0]:'
-    print data[0]
-    print 'data[0].keys:'
-    print data[0].keys()
+    print('data[0]:')
+    print(data[0])
+    print('data[0].keys:')
+    print(data[0].keys())
 
 
 def addresses_json_generator(data):
